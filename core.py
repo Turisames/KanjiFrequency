@@ -20,14 +20,21 @@ class KanjiCounter():
                             + "んン"
                          ]
 
-    def is_ignorable(self, Letter):
+    def __is_ignorable__(self, Letter):
 
         if Letter in self.__ignore:
             return True
         else:
             return False
 
-    def read_file(self, fileName):
+    def __handle_character__(self, Part):
+        if not self.is_ignorable(Part):
+            if not in self.__ignore:
+                self.__ignore[ Part ] = 1
+            else:
+                self.__ignore[ Part ] += 1
+
+    def __read_file__(self, fileName):
         try:
             kanjiFile = open(fileName, encoding="utf-8")
 
@@ -50,4 +57,5 @@ class KanjiCounter():
         except EOFError:
             pass
 
-    def
+    def __output_list__(self):
+        pass
