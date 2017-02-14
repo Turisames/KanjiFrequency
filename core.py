@@ -11,17 +11,17 @@ class KanjiCounter():
         self.__results = []
 
         #Ignores all romaji and kana signs.
-        self.__ignore = [	"ABCDEFGHIJKLMNOPQRSŠTUVWXYZŽÅÄÖ"
-                            + "ɑbdefgŋhijklmnŋoprsʃtuvyæø"
-                            + "!@.,_^¨'*´´``"
-                            + "1234567890+-<>"
-                            + "あアかカさサたタなナはハまマやヤらラわワ"
-                            + "いイきキしシちチにニひヒみミ※りリゐヰ"
-	                        + "うウくクすスつツぬヌふフむムゆユるル※"
-	                        + "えエけケせセてテねネへヘ	めメ※れレゑヱ"
-	                        + "おオこコそソとトのノほホもモよヨろロをヲ"
-                            + "んン"
-                         ]
+        self.__ignore =	"ABCDEFGHIJKLMNOPQRSŠTUVWXYZŽÅÄÖ" \
+                        + "ɑbdefgŋhijklmnŋoprsʃtuvyæø" \
+                        + "!@.,_^¨'*´´``\"" \
+                        + "1234567890+-<>" \
+                        + "あアかがざだばカさサたタなナはハまマやヤらラわワ" \
+                        + "いイきキしシちチにニひヒみミ※りリゐヰ" \
+                        + "うウくクすスつツぬヌふフむムゆユるル※" \
+                        + "えエけケせセてテねネへヘ	めメ※れレゑヱ" \
+                        + "おオこコそソとトのノほホもモよヨろロをヲ" \
+                        + "んン"
+
 
     def __is_ignorable__(self, Letter):
 
@@ -30,9 +30,9 @@ class KanjiCounter():
         else:
             return False
 
-    def __handle_character__(self, Part):
-        if not self.is_ignorable(Part):
-            if not in self.__ignore:
+    def __handle_character__(self, Part = ""):
+        if not self.__is_ignorable__(Part):
+            if Part not in self.__ignore:
                 self.__counter[ Part ] = 1
             else:
                 self.__counter[ Part ] += 1
@@ -68,6 +68,9 @@ class KanjiCounter():
     def __get_results__(self):
         return self.__results
 
+    def __get_counter__(self):
+        return self.__counter
+
     def __full_process__(self, FileName = ""):
         self.__read_file__( FileName )
-        return self.__get_results__()
+        return self.__output_list__()
