@@ -67,3 +67,7 @@ class KanjiCounter():
 
     def __get_results__(self):
         return self.__results
+
+    def __full_process__(self, FileName = ""):
+        self.__read_file__( FileName )
+        return self.__get_results__()
