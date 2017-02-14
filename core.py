@@ -7,6 +7,9 @@ class KanjiCounter():
         # The dict for counting all the kanjis.
         self.__counter = {}
 
+        # A list for containing the results.
+        self.__results = []
+
         #Ignores all romaji and kana signs.
         self.__ignore = [	"ABCDEFGHIJKLMNOPQRSŠTUVWXYZŽÅÄÖ"
                             + "ɑbdefgŋhijklmnŋoprsʃtuvyæø"
@@ -30,9 +33,9 @@ class KanjiCounter():
     def __handle_character__(self, Part):
         if not self.is_ignorable(Part):
             if not in self.__ignore:
-                self.__ignore[ Part ] = 1
+                self.__counter[ Part ] = 1
             else:
-                self.__ignore[ Part ] += 1
+                self.__counter[ Part ] += 1
 
     def __read_file__(self, fileName):
         try:
@@ -50,12 +53,17 @@ class KanjiCounter():
 
                 # Go through characters in a line.
                 for part in line:
-
-                    pass
+                    self.__handle_character__( part )
 
             kanjiFile.close()
+
+            self.__results = self.__output_list__()
+
         except EOFError:
             pass
 
     def __output_list__(self):
-        pass
+        return sorted(self.__counter, key=(lambda hash : self.__counter[ hash ] ), reverse = True )
+
+    def __get_results__(self):
+        return self.__results
