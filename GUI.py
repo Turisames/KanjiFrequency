@@ -52,11 +52,14 @@ class mainWindow:
         if not kanjiFilePath or kanjiFilePath == "":
             return
 
+        # Interaction with the core.
         results = self.__core.__full_process__( kanjiFilePath )
         map = self.__core.__get_counter__()
 
+        #  Text: Printing the results.
         for line in results:
             self.__textWidget.insert( tk.CURRENT, \
                                       line + ":" + str( map [ line ] ) + "\n" )
-
+        # </Text>
+# End of definition.
 mainWindow()
