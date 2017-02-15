@@ -1,6 +1,11 @@
 import tkinter as tk
 import tkinter.filedialog as filedialog
 import core
+from enum import Enum
+
+class FrequenceMode(Enum):
+    REAL_NUMBERS = 1
+    RELATIVE_NUMBER = 2
 
 class mainWindow:
     def __init__(self):
@@ -17,6 +22,13 @@ class mainWindow:
                                            command=self.__takeFile__ , padx=10, pady=10 )
         self.__takeFileButton.pack()
 
+        self.__frequencyMode = FrequenceMode.REAL_NUMBERS
+        self.__RealRadioBtn = tk.Radiobutton( self.__root, text="Real Numbers", \
+                             variable=self.__frequencyMode, value=FrequenceMode.REAL_NUMBERS)
+        self.__RealRadioBtn.pack()
+        self.__RelativeRadioBtn =tk.Radiobutton( self.__root, text="Relative Frequency", \
+                                 variable=self.__frequencyMode, value=FrequenceMode.RELATIVE_NUMBER)
+        self.__RelativeRadioBtn.pack()
 
         self.__textWidget = tk.Text( self.__root, \
                                      padx=4, pady=4, width=30 )
