@@ -26,14 +26,11 @@ class KanjiCounter():
     #
 
     def __handle_character__(self, Part = ""):
-        print("Not Ignorable",Part)#Debug
         if Part not in self.__ignore:
             if Part not in self.__counter:
                 self.__counter[ Part ] = 1
-                print("\t" + Part, "got one.")#Debug
             else:
                 self.__counter[ Part ] += 1
-                print( "\t" + Part, "got ", str( self.__counter[ Part ] ) )#Debug
 
     def __read_file__(self, fileName):
         try:
