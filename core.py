@@ -23,20 +23,15 @@ class KanjiCounter():
                         + "んン"
     #
 
-    def __is_ignorable__(self, Letter):
-
-        if Letter in self.__ignore:
-            return True
-        else:
-            return False
-
     def __handle_character__(self, Part = ""):
         if not self.__is_ignorable__(Part):
+            print("Not Ignorable",Part)#Debug
             if Part not in self.__ignore:
                 self.__counter[ Part ] = 1
+                print("\t" + Part, "got one.")#Debug
             else:
                 self.__counter[ Part ] += 1
-                print( self.__counter[ Part ] )
+                print( "\t" + Part, "got ", str( self.__counter[ Part ] ) )#Debug
 
     def __read_file__(self, fileName):
         try:
