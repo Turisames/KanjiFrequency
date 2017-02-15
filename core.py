@@ -12,7 +12,7 @@ class KanjiCounter():
 
         #Ignores all romaji and kana signs.
         self.__ignore =	"ABCDEFGHIJKLMNOPQRSŠTUVWXYZŽÅÄÖ" \
-                        + "ɑbdefgŋhijklmnŋoprsʃtuvyæø" \
+                        + "aɑbcdefgŋhijklmnŋoprsʃtuvwyäæø" \
                         + "!@.,_^¨'*´´``\"" \
                         + "1234567890+-<>" \
                         + "あアかがざだばカさサたタなナはハまマやヤらラわワ" \
@@ -20,7 +20,9 @@ class KanjiCounter():
                         + "うウくクすスつツぬヌふフむムゆユるル※" \
                         + "えエけケせセてテねネへヘ	めメ※れレゑヱ" \
                         + "おオこコそソとトのノほホもモよヨろロをヲ" \
-                        + "んン"
+                        + "んン 、で。ド）（・ィッ()「」　/っ[]プ:" \
+                        + "バジパェグポュピブどヴビ%ベ１ペダペャびじォズ" \
+                        + "２"
     #
 
     def __handle_character__(self, Part = ""):
