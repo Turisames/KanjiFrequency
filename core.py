@@ -21,7 +21,7 @@ class KanjiCounter():
                         + "えエけケせセてテねネへヘ	めメ※れレゑヱ" \
                         + "おオこコそソとトのノほホもモよヨろロをヲ" \
                         + "んン"
-
+    #
 
     def __is_ignorable__(self, Letter):
 
@@ -36,6 +36,7 @@ class KanjiCounter():
                 self.__counter[ Part ] = 1
             else:
                 self.__counter[ Part ] += 1
+                print( self.__counter[ Part ] )
 
     def __read_file__(self, fileName):
         try:
