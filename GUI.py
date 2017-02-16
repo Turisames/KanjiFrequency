@@ -48,7 +48,7 @@ class mainWindow:
     def __takeFile__(self):
         kanjiFilePath = filedialog.askopenfilename( filetypes=[ ("text files", ".txt") ] )
 
-        # If there was some trouble getting the file, cancel
+        # If there was some trouble getting the file, cancel.
         if not kanjiFilePath or kanjiFilePath == "":
             return
 
@@ -61,5 +61,6 @@ class mainWindow:
             self.__textWidget.insert( tk.CURRENT, \
                                       line + ":" + str( map [ line ] ) + "\n" )
         # </Text>
+
 # End of definition.
 mainWindow()
