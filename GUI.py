@@ -39,7 +39,7 @@ class mainWindow:
 
         # The widget for showing the results.
         self.__textWidget = tk.Text( self.__root, \
-                                     padx=4, pady=4, width=30 )
+                                     padx=4, pady=4, width=30, state=tk.NORMAL )
         self.__textWidget.pack( side=tk.LEFT )
         #</text>
 
@@ -58,9 +58,14 @@ class mainWindow:
         map = self.__core.__get_counter__()
         total = self.__core.__get_total__()
 
-        word = ""
+        #  Text: Printing the results.
+        if self.__textWidget.index(0.0) != "":
+            self.__clear__()
+
+
         number = 0
         sentence = ""
+        self.__textWidget.config( state=tk.NORMAL)
         for line in results:
             if self.__frequencyMode == FrequenceMode.REAL_NUMBERS:
                 number = map[ line ]
@@ -68,12 +73,15 @@ class mainWindow:
                 number = map[ line ] / total
             word = line + ":" + str( number )
             sentence += word + "\n"
-
-        #  Text: Printing the results.
-        for line in results:
             self.__textWidget.insert( tk.CURRENT, \
                                       line + ":" + str( map [ line ] ) + "\n" )
+        self.__textWidget.config( state=tk.DISABLED )
         # </Text>
+
+    def __clear__(self):
+        self.__textWidget.config( state=tk.NORMAL )
+        self.__textWidget.delete( 0.0, tk.END )
+        self.__textWidget.config(state=tk.DISABLED )
 
 # End of definition.
 mainWindow()
