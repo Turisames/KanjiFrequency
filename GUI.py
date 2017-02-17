@@ -34,6 +34,7 @@ class mainWindow:
         self.__RelativeRadioBtn =tk.Radiobutton( self.__root, text="Relative Frequency", \
                                  variable=self.__frequencyMode, value=FrequenceMode.RELATIVE_NUMBER)
         self.__RelativeRadioBtn.pack()
+        self.__RealRadioBtn.select()
         # </radiobuttons>
 
         # The widget for showing the results.
