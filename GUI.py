@@ -71,14 +71,14 @@ class mainWindow:
         self.__textWidget.config( state=tk.NORMAL )
         for line in results:
             if self.__frequencyMode.get() == REAL_NUMBERS:
-                number = map[ line ]
+                number = str( map[ line ] )
             elif self.__frequencyMode.get() == RELATIVE_NUMBERS:
-                number = map[ line ] / total
-                print( number )
+                number = map[ line ] / total * 100
+                number = "{0:.2f}%".format( number )
             word = line + ":" + str( number )
             sentence += word + "\n"
             self.__textWidget.insert( tk.CURRENT, \
-                                      line + ":" + str( map [ line ] ) + "\n" )
+                                      line + ":" + number + "\n" )
         self.__textWidget.config( state=tk.DISABLED )
         # </Text>
 
