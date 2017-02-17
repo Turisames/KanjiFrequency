@@ -29,10 +29,10 @@ class mainWindow:
         # The radiobuttons.
         self.__frequencyMode = FrequenceMode.REAL_NUMBERS
         self.__RealRadioBtn = tk.Radiobutton( self.__root, text="Real Numbers", \
-                             variable=self.__frequencyMode, value=FrequenceMode.REAL_NUMBERS)
+                             variable=self.__frequencyMode, value=FrequenceMode.REAL_NUMBERS )
         self.__RealRadioBtn.pack()
         self.__RelativeRadioBtn =tk.Radiobutton( self.__root, text="Relative Frequency", \
-                                 variable=self.__frequencyMode, value=FrequenceMode.RELATIVE_NUMBER)
+                                 variable=self.__frequencyMode, value=FrequenceMode.RELATIVE_NUMBER )
         self.__RelativeRadioBtn.pack()
         self.__RealRadioBtn.select()
         # </radiobuttons>
@@ -46,6 +46,7 @@ class mainWindow:
         # Get the GUI going.
         self.__root.mainloop()
 
+    # TODO: Divide this long function into several, smaller functions.
     def __takeFile__(self):
         kanjiFilePath = filedialog.askopenfilename( filetypes=[ ("text files", ".txt") ] )
 
@@ -59,14 +60,14 @@ class mainWindow:
         total = self.__core.__get_total__()
 
         #  Text: Printing the results.
-        if self.__textWidget.index(0.0) != "":
+        if self.__textWidget.index( 0.0 ) != "":
             self.__clear__()
-            self.__core.__clear__()
 
         number = 0
         sentence = ""
-        self.__textWidget.config( state=tk.NORMAL)
+        self.__textWidget.config( state=tk.NORMAL )
         for line in results:
+            print( self.__frequencyMode )
             if self.__frequencyMode == FrequenceMode.REAL_NUMBERS:
                 number = map[ line ]
             elif self.__frequencyMode == FrequenceMode.RELATIVE_NUMBERS:
@@ -82,6 +83,7 @@ class mainWindow:
         self.__textWidget.config( state=tk.NORMAL )
         self.__textWidget.delete( 0.0, tk.END )
         self.__textWidget.config(state=tk.DISABLED )
+        self.__core.__clear__()
 
 # End of definition.
 mainWindow()
