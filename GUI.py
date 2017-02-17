@@ -38,6 +38,7 @@ class mainWindow:
         # </radiobuttons>
 
         # The widget for showing the results.
+        # TODO: Change the textwidget to a label.
         self.__textWidget = tk.Text( self.__root, \
                                      padx=4, pady=4, width=30 )
         self.__textWidget.pack()
