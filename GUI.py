@@ -38,10 +38,9 @@ class mainWindow:
         # </radiobuttons>
 
         # The widget for showing the results.
-        # TODO: Change the textwidget to a label.
         self.__textWidget = tk.Text( self.__root, \
                                      padx=4, pady=4, width=30 )
-        self.__textWidget.pack()
+        self.__textWidget.pack( side=tk.LEFT )
         #</text>
 
         # Get the GUI going.
@@ -57,6 +56,18 @@ class mainWindow:
         # Interaction with the core.
         results = self.__core.__full_process__( kanjiFilePath )
         map = self.__core.__get_counter__()
+        total = self.__core.__get_total__()
+
+        word = ""
+        number = 0
+        sentence = ""
+        for line in results:
+            if self.__frequencyMode == FrequenceMode.REAL_NUMBERS:
+                number = map[ line ]
+            elif self.__frequencyMode == FrequenceMode.RELATIVE_NUMBERS:
+                number = map[ line ] / total
+            word = line + ":" + str( number )
+            sentence += word + "\n"
 
         #  Text: Printing the results.
         for line in results:
