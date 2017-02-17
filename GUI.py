@@ -1,11 +1,13 @@
 import tkinter as tk
 import tkinter.filedialog as filedialog
 import core
-from enum import Enum
 
-class FrequenceMode(Enum):
-    REAL_NUMBERS = 1
-    RELATIVE_NUMBER = 2
+'''Had to replace glorious enum with terribly unreliable
+global variables. I do have a policy for not making
+global variables, certainly not non-const ones, but
+stupid Python doesn't have contant variables.'''
+REAL_NUMBERS = 1
+RELATIVE_NUMBERS = 2
 
 class mainWindow:
     def __init__(self):
@@ -27,12 +29,13 @@ class mainWindow:
         # </filebutton>
 
         # The radiobuttons.
-        self.__frequencyMode = FrequenceMode.REAL_NUMBERS
+        self.__frequencyMode = tk.IntVar()
+        self.__frequencyMode.set( REAL_NUMBERS )
         self.__RealRadioBtn = tk.Radiobutton( self.__root, text="Real Numbers", \
-                             variable=self.__frequencyMode, value=FrequenceMode.REAL_NUMBERS )
+                             variable=self.__frequencyMode, value=REAL_NUMBERS )
         self.__RealRadioBtn.pack()
         self.__RelativeRadioBtn =tk.Radiobutton( self.__root, text="Relative Frequency", \
-                                 variable=self.__frequencyMode, value=FrequenceMode.RELATIVE_NUMBER )
+                                 variable=self.__frequencyMode, value=RELATIVE_NUMBERS )
         self.__RelativeRadioBtn.pack()
         self.__RealRadioBtn.select()
         # </radiobuttons>
@@ -67,11 +70,11 @@ class mainWindow:
         sentence = ""
         self.__textWidget.config( state=tk.NORMAL )
         for line in results:
-            print( self.__frequencyMode )
-            if self.__frequencyMode == FrequenceMode.REAL_NUMBERS:
+            if self.__frequencyMode.get() == REAL_NUMBERS:
                 number = map[ line ]
-            elif self.__frequencyMode == FrequenceMode.RELATIVE_NUMBERS:
+            elif self.__frequencyMode.get() == RELATIVE_NUMBERS:
                 number = map[ line ] / total
+                print( number )
             word = line + ":" + str( number )
             sentence += word + "\n"
             self.__textWidget.insert( tk.CURRENT, \
