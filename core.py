@@ -63,9 +63,19 @@ class KanjiCounter():
         except EOFError:
             pass
 
+    def __full_process__(self, FileName = ""):
+        self.__read_file__( FileName )
+        return self.__output_list__()
+
+    def __clear__(self):
+        self.__counter = {}
+        self.__results = []
+        self.__kanjiTotal = 0
+
     def __output_list__(self):
         return sorted(self.__counter, key=(lambda hash : self.__counter[ hash ] ), reverse = True )
 
+    ### Getters.
     def __get_results__(self):
         return self.__results
 
@@ -74,7 +84,3 @@ class KanjiCounter():
 
     def __get_total__(self):
         return self.__kanjiTotal
-
-    def __full_process__(self, FileName = ""):
-        self.__read_file__( FileName )
-        return self.__output_list__()

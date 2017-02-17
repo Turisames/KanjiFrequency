@@ -61,7 +61,7 @@ class mainWindow:
         #  Text: Printing the results.
         if self.__textWidget.index(0.0) != "":
             self.__clear__()
-
+            self.__core.__clear__()
 
         number = 0
         sentence = ""
